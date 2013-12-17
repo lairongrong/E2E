@@ -58,7 +58,7 @@ public class UserDAO {
     
     public User findById(int id) {
     	String sql = "SELECT * FROM user WHERE uid = ?";
-        User wine = null;
+        User user = null;
         Connection c = null;
         try {
             c = ConnectionHelper.getConnection();
@@ -66,7 +66,7 @@ public class UserDAO {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                wine = processRow(rs);
+                user = processRow(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class UserDAO {
 		} finally {
 			ConnectionHelper.close(c);
 		}
-        return wine;
+        return user;
     }
     
     protected User processRow(ResultSet rs) throws SQLException {
